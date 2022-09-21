@@ -1,0 +1,16 @@
+.Nav{
+    height: 50px;
+    width: 95%;
+    background-color: lightblue;
+    color: black;
+    border-radius: 5px;
+}
+
+a{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.NavBar{
+    margin-top: 10px;
+}

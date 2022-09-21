@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import userContext from "./userContext";
+import "./Nav.css";
 
 /** Nav: links to jobs, companies and homepage
  *
@@ -16,10 +17,10 @@ function Nav({ logout }) {
   const { currUser } = useContext(userContext);
 
   return (
-    <div>
-      <nav className="NavBar">
-        {currUser ? (
-          <div>
+    <div className="Nav">
+      <nav>
+        {currUser !== null ? (
+          <div className="NavBar">
             <NavLink to={`/`}> Jobly </NavLink>
             <NavLink to={`/companies`}> Companies</NavLink>
             <NavLink to={`/jobs`}> Jobs </NavLink>
@@ -29,7 +30,7 @@ function Nav({ logout }) {
             </NavLink>
           </div>
         ) : (
-          <div>
+          <div className="NavBar">
             <NavLink to={`/`}> Jobly </NavLink>
             <NavLink to={`/login`}>Login</NavLink>
             <NavLink to={`/signup`}>Signup</NavLink>

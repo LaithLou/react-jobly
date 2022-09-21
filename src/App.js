@@ -53,6 +53,8 @@ function App() {
     let newToken = await JoblyApi.getTokenForCurrUser(username, password);
     localStorage.setItem("token", `${newToken}`);
     console.log("token?", localStorage.getItem("token"));
+    token = localStorage.getItem("token");
+
     // TODO: original code w/ token state
     // setToken(newToken);
   }

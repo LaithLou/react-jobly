@@ -1,12 +1,20 @@
-div{
+.company-card{
     width: 700px;
-    height: 200px;
-    background-color: lightgray;
+    height: 50px;
+    background-color: lightblue;
     color: black;
     margin-left: auto;
     margin-right: auto;
-
 }
+
+
+/* div{
+    width: 700px;
+    height: 100px;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+} */
 
 a {
     text-decoration: none;
@@ -17,3 +25,4 @@ a {
     height: 400px;
 
 }
+

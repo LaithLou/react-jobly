@@ -1,4 +1,5 @@
 import React from "react";
+import "./CompanyCard.css"
 import { Link } from "react-router-dom";
 
 /** CompanyCard: renders a single company's information
