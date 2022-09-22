@@ -1,4 +1,5 @@
 import React from "react";
+import "./Alert.css";
 
 /** Alert: displays error messages for incorrect form inputs.
  *

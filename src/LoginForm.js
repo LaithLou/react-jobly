@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./Alert";
+import "./LoginForm.css";
 
 /** loginForm: renders basic login box.
  *
@@ -48,20 +49,24 @@ function LoginForm({ login }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        name="username"
-        placeholder="Enter username"
-        onChange={handleChange}
-        value={formData.username}
-      />
-      <input
-        name="password"
-        password="password"
-        type="password"
-        placeholder="Enter password"
-        onChange={handleChange}
-        value={formData.password}
-      />
+      <label>Username
+        <input
+          name="username"
+          placeholder="Enter username"
+          onChange={handleChange}
+          value={formData.username}
+        />
+      </label>
+      <label>Password
+        <input
+          name="password"
+          password="password"
+          type="password"
+          placeholder="Enter password"
+          onChange={handleChange}
+          value={formData.password}
+        />
+      </label>
       {error.length !== 0 && <Alert error={error} />}
       <button>Submit</button>
     </form>

@@ -1,0 +1,24 @@
+.SearchForm {
+    width: 840px;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: auto;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.search-label {
+    display: inline;
+    color: black;
+}
+
+#search-input {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.search-btn {
+    display: inline;
+}

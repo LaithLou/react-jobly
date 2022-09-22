@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Alert from "./Alert";
 import { useNavigate } from "react-router-dom";
+import "./SignupForm.css";
 
 /** SearchForm: renders basic search box.
  *
@@ -47,28 +48,38 @@ function SignupForm({ signup }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        name="username"
-        placeholder="Enter username"
-        onChange={handleChange}
-      />
-      <input
-        name="password"
-        placeholder="Enter password"
-        type="password"
-        onChange={handleChange}
-      />
-      <input
-        name="firstName"
-        placeholder="Enter first name"
-        onChange={handleChange}
-      />
-      <input
-        name="lastName"
-        placeholder="Enter last name"
-        onChange={handleChange}
-      />
-      <input name="email" placeholder="Enter email" onChange={handleChange} />
+      <label>Username
+        <input
+          name="username"
+          placeholder="Enter username"
+          onChange={handleChange}
+        />
+      </label>
+      <label>Password
+        <input
+          name="password"
+          placeholder="Enter password"
+          type="password"
+          onChange={handleChange}
+        />
+      </label>
+      <label>First Name
+        <input
+          name="firstName"
+          placeholder="Enter first name"
+          onChange={handleChange}
+        />
+      </label>
+      <label>Last Name
+        <input
+          name="lastName"
+          placeholder="Enter last name"
+          onChange={handleChange}
+        />
+      </label>
+      <label>Email
+        <input name="email" placeholder="Enter email" onChange={handleChange} />
+      </label>
       {error.length !== 0 && <Alert error={error} />}
       <button>Submit</button>
     </form>

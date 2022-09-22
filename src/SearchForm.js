@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./SearchForm.css";
 
 /** SearchForm: renders basic search box.
  *
@@ -30,13 +31,16 @@ function SearchForm({ search }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="search" //TODO: searchTerm
-        placeholder="Enter search term"
-        onChange={handleChange}
-      />
-      <button>Submit</button>
+    <form className="SearchForm" onSubmit={handleSubmit}>
+      <label className="search-label">Search
+        <input
+          id="search-input"
+          name="search" //TODO: searchTerm
+          placeholder="Enter search term"
+          onChange={handleChange}
+        />
+      </label>
+      <button className="search-btn">Submit</button>
     </form>
   );
 }

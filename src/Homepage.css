@@ -1,0 +1,16 @@
+.Homepage {
+    width: 800px;
+    /* height: 100px; */
+    color: black;
+    margin-left: auto;
+    margin-top: 50px;
+    margin-right: auto;
+    border: 3px solid black;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* .homepage-headers {
+
+} */

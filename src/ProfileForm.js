@@ -52,31 +52,39 @@ function ProfileForm({ editProfile }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        name="username"
-        placeholder="Enter username"
-        value={formData.username}
-        onChange={handleChange}
-        disabled="disabled"
-      />
-      <input
-        name="firstName"
-        placeholder="Enter first name"
-        value={formData.firstName}
-        onChange={handleChange}
-      />
-      <input
-        name="lastName"
-        placeholder="Enter last name"
-        onChange={handleChange}
-        value={formData.lastName}
-      />
-      <input
-        name="email"
-        placeholder="Enter email"
-        value={formData.email}
-        onChange={handleChange}
-      />
+      <label>Username
+        <input
+          name="username"
+          placeholder="Enter username"
+          value={formData.username}
+          onChange={handleChange}
+          disabled="disabled"
+        />
+      </label>
+      <label>First Name
+        <input
+          name="firstName"
+          placeholder="Enter first name"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+      </label>
+      <label>Last Name
+        <input
+          name="lastName"
+          placeholder="Enter last name"
+          onChange={handleChange}
+          value={formData.lastName}
+        />
+      </label>
+      <label>Email
+        <input
+          name="email"
+          placeholder="Enter email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </label>
       {error.length !== 0 && <Alert error={error} />}
       <button>Save Changes</button>
     </form>

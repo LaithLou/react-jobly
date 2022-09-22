@@ -43,6 +43,7 @@ function App() {
           data: userResult,
         }));
       }
+      // try localStorage.getItem("token" !== undefined)
       if (currUser.isLoggedIn !== false) {
         fetchUserDataWithToken();
       }
