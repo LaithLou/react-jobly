@@ -7,12 +7,12 @@ import userContext from "./userContext";
 import JoblyApi from "./api";
 import jwt_decode from "jwt-decode";
 
-const DEFAULT_USER = null;
+const DEFAULT_USER = { data: null, isLoggedIn: false };
 
 /** App : handles rendering the navigation bar
  *
  *  State:
- *  - currUser: { username, firstName, lastName, isAdmin, jobs }
+ *  - currUser: { data:{username, firstName, lastName, isAdmin, jobs}, isLoggedIn:false }
  *        where jobs is { id, title, companyHandle, companyName, state }
  *  - token
  *
@@ -38,13 +38,16 @@ function App() {
           decoded.username,
           storedToken
         );
-        setCurrUser(userResult);
+        setCurrUser((currUser) => ({
+          ...currUser,
+          data: userResult,
+        }));
       }
-      if (token !== undefined) {
+      if (localStorage.getItem("token") !== undefined) {
         fetchUserDataWithToken();
       }
     },
-    [token]
+    [currUser.isLoggedIn]
   );
 
   /** Login a user and update token. */
@@ -54,6 +57,10 @@ function App() {
     localStorage.setItem("token", `${newToken}`);
     console.log("token?", localStorage.getItem("token"));
     token = localStorage.getItem("token");
+    setCurrUser((currUser) => ({
+      ...currUser,
+      isLoggedIn: true,
+    }));
 
     // TODO: original code w/ token state
     // setToken(newToken);
@@ -67,7 +74,12 @@ function App() {
     console.log("remove token?", localStorage.getItem("token"));
     // TODO: original code w/ token state
     // setToken('');
-    setCurrUser(DEFAULT_USER);
+    setCurrUser((currUser) => ({
+      ...currUser,
+      data: null,
+      isLoggedIn: false,
+    }));
+    console.log("inside logout!!!", currUser);
   }
 
   /** Signup a new user and update token. */

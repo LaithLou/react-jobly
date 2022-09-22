@@ -19,14 +19,14 @@ function Nav({ logout }) {
   return (
     <div className="Nav">
       <nav>
-        {currUser !== null ? (
+        {currUser.data !== null ? (
           <div className="NavBar">
             <NavLink to={`/`}> Jobly </NavLink>
             <NavLink to={`/companies`}> Companies</NavLink>
             <NavLink to={`/jobs`}> Jobs </NavLink>
             <NavLink to={`/profile`}> Profile </NavLink>
             <NavLink to={`/`} onClick={logout}>
-              Log out {currUser.username}
+              Log out {currUser.data.username}
             </NavLink>
           </div>
         ) : (

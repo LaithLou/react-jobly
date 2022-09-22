@@ -11,14 +11,14 @@ import userContext from "./userContext";
 function Homepage() {
   console.log("In Homepage");
   const { currUser } = useContext(userContext);
-
+  console.log("in homepage CurrUser!!", currUser);
   return (
     <div>
-      {currUser ? (
+      {currUser.data ? (
         <div>
           <h1>Jobly</h1>
           <h2>All the jobs in one, convenient place.</h2>
-          <h1> Welcome back, {currUser.firstName} </h1>
+          <h1> Welcome back, {currUser.data.firstName} </h1>
         </div>
       ) : (
         <div>

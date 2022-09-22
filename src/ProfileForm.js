@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 function ProfileForm({ editProfile }) {
   const navigate = useNavigate();
   const { currUser } = useContext(userContext);
-  const initialState = currUser;
+  const initialState = currUser.data;
   const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState([]);
 

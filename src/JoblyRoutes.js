@@ -26,21 +26,27 @@ function JoblyRoutes({ login, signup, editProfile }) {
 
   // TODO: add logic to keep some routes from showing if user not logged in
   return (
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/companies" element={<CompanyList />} />
-      <Route path="/companies/:name" element={<CompanyDetails />} />
-      <Route path="/jobs" element={<JobList />} />
-      <Route path="/login" element={<LoginForm login={login} />} />
-      <Route path="/signup" element={<SignupForm signup={signup} />} />
-      {currUser !== null && (
-        <Route
-          path="/profile"
-          element={<ProfileForm editProfile={editProfile} />}
-        />
+    <div className="jobly-routes">
+      {currUser.data !== null ? (
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route
+            path="/profile"
+            element={<ProfileForm editProfile={editProfile} />}
+          />
+          <Route path="/companies" element={<CompanyList />} />
+          <Route path="/companies/:name" element={<CompanyDetails />} />
+          <Route path="/jobs" element={<JobList />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginForm login={login} />} />
+          <Route path="/signup" element={<SignupForm signup={signup} />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
       )}
-      <Route path="*" element={<Navigate to="/login" />} />
-    </Routes>
+    </div>
   );
 }
 
