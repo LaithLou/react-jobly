@@ -11,10 +11,10 @@ import userContext from "./userContext";
 function Homepage() {
   console.log("In Homepage");
   const { currUser } = useContext(userContext);
-  console.log("in homepage CurrUser!!", currUser);
+
   return (
     <div>
-      {currUser.data ? (
+      {currUser.isLoggedIn ? (
         <div>
           <h1>Jobly</h1>
           <h2>All the jobs in one, convenient place.</h2>

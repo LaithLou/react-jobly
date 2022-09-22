@@ -24,12 +24,12 @@ function JoblyRoutes({ login, signup, editProfile }) {
   console.log("In JoblyRoutes");
   const { currUser } = useContext(userContext);
 
-  // TODO: add logic to keep some routes from showing if user not logged in
   return (
     <div className="jobly-routes">
-      {currUser.data !== null ? (
+      {currUser.isLoggedIn !== false ? (
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginForm login={login} />} />
           <Route
             path="/profile"
             element={<ProfileForm editProfile={editProfile} />}

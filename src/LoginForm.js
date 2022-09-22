@@ -39,6 +39,7 @@ function LoginForm({ login }) {
       await login(formData.username, formData.password);
       setFormData(initialState);
       navigate("/companies");
+      console.log("passed navigate to /companies");
     } catch (err) {
       console.log("err=", err);
       setError(err);

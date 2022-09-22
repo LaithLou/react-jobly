@@ -12,12 +12,12 @@ const DEFAULT_USER = { data: null, isLoggedIn: false };
 /** App : handles rendering the navigation bar
  *
  *  State:
- *  - currUser: { data:{username, firstName, lastName, isAdmin, jobs}, isLoggedIn:false }
+ *  - currUser: { data:{username, firstName, lastName, isAdmin, jobs}, isLoggedIn }
  *        where jobs is { id, title, companyHandle, companyName, state }
  *  - token
  *
  *  Context:
- *  - userData: first name, username, apply/applied
+ *  - currUser
  *
  * App ->{Nav, JoblyRoutes}
  */
@@ -43,7 +43,7 @@ function App() {
           data: userResult,
         }));
       }
-      if (localStorage.getItem("token") !== undefined) {
+      if (currUser.isLoggedIn !== false) {
         fetchUserDataWithToken();
       }
     },
@@ -55,15 +55,11 @@ function App() {
   async function login(username, password) {
     let newToken = await JoblyApi.getTokenForCurrUser(username, password);
     localStorage.setItem("token", `${newToken}`);
-    console.log("token?", localStorage.getItem("token"));
     token = localStorage.getItem("token");
     setCurrUser((currUser) => ({
       ...currUser,
       isLoggedIn: true,
     }));
-
-    // TODO: original code w/ token state
-    // setToken(newToken);
   }
 
   /** Logout a user and remove token. */
@@ -72,14 +68,11 @@ function App() {
     evt.preventDefault();
     localStorage.setItem("token", undefined);
     console.log("remove token?", localStorage.getItem("token"));
-    // TODO: original code w/ token state
-    // setToken('');
     setCurrUser((currUser) => ({
       ...currUser,
       data: null,
       isLoggedIn: false,
     }));
-    console.log("inside logout!!!", currUser);
   }
 
   /** Signup a new user and update token. */
@@ -87,8 +80,6 @@ function App() {
   async function signup(userData) {
     let newToken = await JoblyApi.getTokenForNewUser(userData);
     localStorage.setItem("token", `${newToken}`);
-    // TODO: original code w/ token state
-    // setToken(newToken);
   }
 
   /** editProfile takes user data changes user information to
