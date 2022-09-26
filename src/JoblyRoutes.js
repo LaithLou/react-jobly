@@ -22,11 +22,12 @@ import userContext from "./userContext";
 
 function JoblyRoutes({ login, signup, editProfile }) {
   console.log("In JoblyRoutes");
-  const { currUser } = useContext(userContext);
+  const { currUser, token } = useContext(userContext);
+  console.log("token=", token);
 
   return (
     <div className="jobly-routes">
-      {currUser.data !== null ? (
+      {token !== undefined ? (
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginForm login={login} />} />

@@ -19,7 +19,7 @@ function Nav({ logout }) {
   return (
     <div className="Nav">
       <nav>
-        {currUser.isLoggedIn !== false ? (
+        {currUser.data !== null ? (
           <div className="NavBar">
             <NavLink to={`/`}> Jobly </NavLink>
             <NavLink to={`/companies`}> Companies</NavLink>

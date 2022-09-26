@@ -24,10 +24,10 @@ const DEFAULT_USER = { data: null, isLoggedIn: false };
 
 function App() {
   const [currUser, setCurrUser] = useState(DEFAULT_USER);
-  console.log("In App", "state:", currUser);
-  let token = localStorage.getItem("token");
-  console.log("token in localStorage=", token);
-  // isLoggedInNow(token);
+  const [token, setToken] = useState(
+    localStorage.getItem("token")
+  );
+  console.log("In App", "state:", currUser, token);
 
   useEffect(
     function getUserDataWithToken() {
@@ -42,22 +42,27 @@ function App() {
         setCurrUser((currUser) => ({
           ...currUser,
           data: userResult,
+          isLoggedIn: true,
         }));
       }
       // try localStorage.getItem("token" !== undefined)
-      if (currUser.isLoggedIn !== false || token !== undefined) {
+      if (token !== undefined) {
         fetchUserDataWithToken();
       }
     },
-    [currUser.isLoggedIn, token]
+    [token]
   );
 
   /** Login a user and update token. */
 
   async function login(username, password) {
+    console.log("entered login");
     let newToken = await JoblyApi.getTokenForCurrUser(username, password);
+    console.log("newToken=", newToken);
     localStorage.setItem("token", `${newToken}`);
-    token = localStorage.getItem("token");
+    // token = localStorage.getItem("token");
+    // console.log("token=", token);
+    setToken(newToken);
     setCurrUser((currUser) => ({
       ...currUser,
       isLoggedIn: true,
@@ -69,6 +74,7 @@ function App() {
     console.log("INSIDE LOGOUT!!!!");
     evt.preventDefault();
     localStorage.setItem("token", undefined);
+    setToken(undefined);
     console.log("remove token?", localStorage.getItem("token"));
     setCurrUser((currUser) => ({
       ...currUser,
@@ -82,6 +88,7 @@ function App() {
   async function signup(userData) {
     let newToken = await JoblyApi.getTokenForNewUser(userData);
     localStorage.setItem("token", `${newToken}`);
+    setToken(newToken);
   }
 
   /** editProfile takes user data changes user information to
@@ -96,21 +103,11 @@ function App() {
     setCurrUser(updatedUser);
   }
 
-  // function isLoggedInNow(token) {
-  //   if (token !== undefined && currUser.isLoggedIn !== true) {
-  //     setCurrUser((currUser) => ({
-  //       ...currUser,
-  //       isLoggedIn: true,
-  //     }));
-  //   } else {
-  //     return;
-  //   }
-  // }
 
   return (
     <div className="App">
       <header className="App-header">
-        <userContext.Provider value={{ currUser }}>
+        <userContext.Provider value={{ currUser, token }}>
           <BrowserRouter>
             <Nav logout={logout} editProfile={editProfile} />
             <JoblyRoutes
