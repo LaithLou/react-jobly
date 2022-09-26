@@ -26,7 +26,7 @@ function JoblyRoutes({ login, signup, editProfile }) {
 
   return (
     <div className="jobly-routes">
-      {currUser.isLoggedIn !== false ? (
+      {currUser.data !== null ? (
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginForm login={login} />} />

@@ -27,6 +27,7 @@ function App() {
   console.log("In App", "state:", currUser);
   let token = localStorage.getItem("token");
   console.log("token in localStorage=", token);
+  // isLoggedInNow(token);
 
   useEffect(
     function getUserDataWithToken() {
@@ -44,11 +45,11 @@ function App() {
         }));
       }
       // try localStorage.getItem("token" !== undefined)
-      if (currUser.isLoggedIn !== false) {
+      if (currUser.isLoggedIn !== false || token !== undefined) {
         fetchUserDataWithToken();
       }
     },
-    [currUser.isLoggedIn]
+    [currUser.isLoggedIn, token]
   );
 
   /** Login a user and update token. */
@@ -89,8 +90,22 @@ function App() {
   async function editProfile(userData) {
     const storedToken = localStorage.getItem("token");
     let updatedUser = await JoblyApi.updateUser(userData, storedToken);
+
+    //TODO: when updating user make sure to updated correctly using
+    // the callback pattern.
     setCurrUser(updatedUser);
   }
+
+  // function isLoggedInNow(token) {
+  //   if (token !== undefined && currUser.isLoggedIn !== true) {
+  //     setCurrUser((currUser) => ({
+  //       ...currUser,
+  //       isLoggedIn: true,
+  //     }));
+  //   } else {
+  //     return;
+  //   }
+  // }
 
   return (
     <div className="App">

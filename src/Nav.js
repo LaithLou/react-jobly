@@ -13,13 +13,13 @@ import "./Nav.css";
  */
 
 function Nav({ logout }) {
-  console.log("In Nav");
   const { currUser } = useContext(userContext);
-
+  console.log("In Nav", currUser);
+  //TODO: dosen't work when invalid username/password is submitted
   return (
     <div className="Nav">
       <nav>
-        {currUser.data !== null ? (
+        {currUser.isLoggedIn !== false ? (
           <div className="NavBar">
             <NavLink to={`/`}> Jobly </NavLink>
             <NavLink to={`/companies`}> Companies</NavLink>
