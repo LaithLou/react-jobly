@@ -20,17 +20,18 @@ import userContext from "./userContext";
  * App -> JoblyRoutes -> {Homepage, CompanyList, CompanyDetails, JobList }
  */
 
+// TODO: redirect to same page when refreshing while logged in
+
 function JoblyRoutes({ login, signup, editProfile }) {
   console.log("In JoblyRoutes");
   const { currUser, token } = useContext(userContext);
-  console.log("token=", token);
+  
 
   return (
     <div className="jobly-routes">
-      {token !== undefined ? (
+      {currUser.isLoggedIn === true ? (
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<LoginForm login={login} />} />
           <Route
             path="/profile"
             element={<ProfileForm editProfile={editProfile} />}
@@ -38,13 +39,14 @@ function JoblyRoutes({ login, signup, editProfile }) {
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:name" element={<CompanyDetails />} />
           <Route path="/jobs" element={<JobList />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       ) : (
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginForm login={login} />} />
           <Route path="/signup" element={<SignupForm signup={signup} />} />
-          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       )}
     </div>
